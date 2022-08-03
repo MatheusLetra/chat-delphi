@@ -2,8 +2,8 @@ object Frm_Principal: TFrm_Principal
   Left = 0
   Top = 0
   Caption = 'Full Chat - Cliente'
-  ClientHeight = 498
-  ClientWidth = 814
+  ClientHeight = 689
+  ClientWidth = 1349
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,12 @@ object Frm_Principal: TFrm_Principal
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 814
-    Height = 498
+    Width = 1349
+    Height = 689
     Align = alClient
     TabOrder = 0
     ExplicitLeft = 24
     ExplicitTop = 32
-    ExplicitWidth = 1349
-    ExplicitHeight = 689
     object Label1: TLabel
       Left = 262
       Top = 442
@@ -91,8 +89,8 @@ object Frm_Principal: TFrm_Principal
       ParentFont = False
     end
     object Memo1: TMemo
-      Left = 905
-      Top = 16
+      Left = 1033
+      Top = 245
       Width = 280
       Height = 141
       Font.Charset = ANSI_CHARSET
@@ -219,8 +217,7 @@ object Frm_Principal: TFrm_Principal
         Width = 531
         Height = 49
         Align = alClient
-        BevelOuter = bvNone
-        Color = 16777088
+        Color = 8453888
         ParentBackground = False
         TabOrder = 0
         ExplicitWidth = 529
@@ -293,18 +290,18 @@ object Frm_Principal: TFrm_Principal
     OnDisconnect = ClientSocket1Disconnect
     OnRead = ClientSocket1Read
     OnError = ClientSocket1Error
-    Left = 24
-    Top = 248
+    Left = 688
+    Top = 32
   end
   object NotificationCenter1: TNotificationCenter
-    Left = 24
-    Top = 320
+    Left = 720
+    Top = 80
   end
   object Mensagens: TClientDataSet
     Aggregates = <>
     Params = <>
-    Left = 104
-    Top = 248
+    Left = 112
+    Top = 320
     object MensagensMENSAGEM: TStringField
       FieldName = 'MENSAGEM'
       Size = 500
@@ -320,7 +317,7 @@ object Frm_Principal: TFrm_Principal
   end
   object sMensagens: TDataSource
     DataSet = Mensagens
-    Left = 104
-    Top = 312
+    Left = 168
+    Top = 464
   end
 end

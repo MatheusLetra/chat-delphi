@@ -16,14 +16,14 @@
     <Transaction>2020/11/23 13:41:24.000.693,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
     <Transaction>2020/11/23 13:41:24.000.339,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2020/11/24 16:28:14.000.275,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:42:17.688,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:42:51.158,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:42:51.158,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.dfm=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2022/08/03 10:43:03.832,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\PServidorChat.dproj=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2022/08/03 10:43:35.099,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UPrincipal.pas</Transaction>
-    <Transaction>2022/08/03 10:44:03.347,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas=</Transaction>
-    <Transaction>2022/08/03 11:52:15.187,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 11:52:39.075,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Comum\UFuncoes.pas=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:42:17.000.688,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:42:51.000.158,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas</Transaction>
+    <Transaction>2022/08/03 10:42:51.000.158,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.dfm</Transaction>
+    <Transaction>2022/08/03 10:43:03.000.832,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\PServidorChat.dproj</Transaction>
+    <Transaction>2022/08/03 10:43:35.000.099,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UPrincipal.pas</Transaction>
+    <Transaction>2022/08/03 10:44:03.000.347,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas=</Transaction>
+    <Transaction>2022/08/03 11:52:15.000.187,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 11:52:39.000.075,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Comum\UFuncoes.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>

@@ -6,7 +6,8 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, System.Win.ScktComp, Vcl.StdCtrls,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, UFuncoes, System.Notification, Vcl.DBCtrls, Data.DB,
+  Datasnap.DBClient, Vcl.DBCGrids;
 
 type
   TFrm_Principal = class(TForm)
@@ -24,6 +25,18 @@ type
     Edit3: TEdit;
     Label5: TLabel;
     Edit4: TEdit;
+    NotificationCenter1: TNotificationCenter;
+    DBCtrlGridMesas: TDBCtrlGrid;
+    Panel2: TPanel;
+    Mensagens: TClientDataSet;
+    sMensagens: TDataSource;
+    MensagensMENSAGEM: TStringField;
+    MensagensAUTOR: TStringField;
+    DBText1: TDBText;
+    DBText2: TDBText;
+    DBText3: TDBText;
+    DBText4: TDBText;
+    MensagensENVIADA: TStringField;
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure ClientSocket1Disconnect(Sender: TObject;
@@ -32,9 +45,13 @@ type
       ErrorEvent: TErrorEvent; var ErrorCode: Integer);
     procedure ClientSocket1Read(Sender: TObject; Socket: TCustomWinSocket);
     procedure FormCreate(Sender: TObject);
+    procedure DBCtrlGridMesasPaintPanel(DBCtrlGrid: TDBCtrlGrid;
+      Index: Integer);
   private
     { Private declarations }
     Str: String;
+    procedure ShowMessage(Msg: String);
+    procedure InserirMensagem(Autor, Mensagem: String; Enviada: Boolean = False);
   public
     { Public declarations }
   end;
@@ -48,7 +65,8 @@ implementation
 
 procedure TFrm_Principal.Button1Click(Sender: TObject);
 begin
-  Str := Edit2.Text + ' diz: ' + Edit1.Text;
+  Str := Edit2.Text + '|;|' + Edit1.Text;
+  InserirMensagem(Edit2.Text, Edit1.Text, True);
   Memo1.Text := Memo1.Text + Str + #13#10;
   Edit1.Text := ''; // Clears the edit box
   ClientSocket1.Socket.SendText(Str); // Send the messages to the server
@@ -79,6 +97,8 @@ begin
     ClientSocket1.Address := Trim(Edit4.Text);
     ClientSocket1.Active := True;
     Button2.Caption := 'Desconectar';
+
+    Mensagens.CreateDataSet;
   end;
 
   if (ClientSocket1.Socket.Connected) then
@@ -93,6 +113,7 @@ begin
     Str := Edit2.Text + ' diz: ' + 'Desconectado';
     ClientSocket1.Active := False;
     Button2.Caption := 'Conectar';
+    Mensagens.Close;
   end;
   Memo1.SelStart := Length(Memo1.Text);
   Memo1.Perform(em_scrollcaret, 0, 0);
@@ -102,6 +123,7 @@ procedure TFrm_Principal.ClientSocket1Disconnect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
   Memo1.Text := Memo1.Text + 'Desconectado' + #13#10;
+  ShowMessage('Desconectado');
   Socket.SendText(Str);
   Button1.Enabled := False;
   Edit1.Enabled := False;
@@ -116,17 +138,36 @@ begin
   ErrorCode := 0;
   ClientSocket1.Active := False;
   Memo1.Text := Memo1.Text + 'Conexão não encontrada' + #13#10;
+  ShowMessage('Conexão não encontrada');
   Memo1.SelStart := Length(Memo1.Text);
   Memo1.Perform(em_scrollcaret, 0, 0);
 end;
 
 procedure TFrm_Principal.ClientSocket1Read(Sender: TObject;
   Socket: TCustomWinSocket);
+var
+  Mensagem: WideString;
 begin
-  // Reads and displays the message received from the server;
-  Memo1.Text := Memo1.Text + 'Servidor diz: ' + Socket.ReceiveText + #13#10;
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
+  Memo1.Text := Socket.ReceiveText + #13#10;
+  Mensagem := Memo1.Lines[0];
+  Memo1.Lines.Clear;
+
+  InserirMensagem('Servidor', Mensagem, False);
+  ShowMessage('Servidor diz: ' + Mensagem);
+end;
+
+procedure TFrm_Principal.DBCtrlGridMesasPaintPanel(DBCtrlGrid: TDBCtrlGrid;
+  Index: Integer);
+begin
+  DBText1.Visible := not (MensagensENVIADA.AsString = 'S');
+  DBText2.Visible := not (MensagensENVIADA.AsString = 'S');
+  DBText3.Visible := (MensagensENVIADA.AsString = 'S');
+  DBText4.Visible := (MensagensENVIADA.AsString = 'S');
+
+  if MensagensENVIADA.AsString = 'N' then
+    Panel2.Color := $0080FF00
+  else
+    Panel2.Color := $00FFFF80;
 end;
 
 procedure TFrm_Principal.FormCreate(Sender: TObject);
@@ -138,6 +179,39 @@ begin
   Edit3.Enabled := True; // Porta
   Edit4.Enabled := True; // Servidor
   Button2.Enabled := True; // Conectar/Desconectar
+end;
+
+procedure TFrm_Principal.InserirMensagem(Autor, Mensagem: String; Enviada: Boolean);
+begin
+  Mensagens.Append;
+  MensagensAUTOR.AsString := Autor;
+  MensagensMENSAGEM.AsString := Mensagem;
+
+  if Enviada then
+    MensagensENVIADA.AsString := 'S'
+  else
+    MensagensENVIADA.AsString := 'N';
+
+  Mensagens.Post;
+end;
+
+procedure TFrm_Principal.ShowMessage(Msg: String);
+var
+  MyNotification: TNotification;
+begin
+  if NotificationCenter1.Supported then
+  begin
+    MyNotification := NotificationCenter1.CreateNotification;
+    try
+      MyNotification.Name := 'ChatNotification';
+      MyNotification.Title := 'Full Chat';
+      MyNotification.AlertBody := Msg;
+
+      NotificationCenter1.PresentNotification(MyNotification);
+    finally
+      MyNotification.Free;
+    end;
+  end;
 end;
 
 end.

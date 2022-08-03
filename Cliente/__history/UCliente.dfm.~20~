@@ -2,8 +2,8 @@ object Frm_Principal: TFrm_Principal
   Left = 0
   Top = 0
   Caption = 'Full Chat - Cliente'
-  ClientHeight = 255
-  ClientWidth = 783
+  ClientHeight = 689
+  ClientWidth = 1349
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,22 +11,21 @@ object Frm_Principal: TFrm_Principal
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 783
-    Height = 255
+    Width = 1349
+    Height = 689
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 416
-    ExplicitTop = 216
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitLeft = 24
+    ExplicitTop = 32
     object Label1: TLabel
       Left = 393
-      Top = 176
+      Top = 178
       Width = 68
       Height = 16
       Caption = 'Mensagem:'
@@ -65,10 +64,23 @@ object Frm_Principal: TFrm_Principal
     end
     object Label4: TLabel
       Left = 18
-      Top = 75
+      Top = 139
       Width = 35
       Height = 16
       Caption = 'Porta:'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label5: TLabel
+      Left = 18
+      Top = 75
+      Width = 50
+      Height = 16
+      Caption = 'Servidor:'
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
@@ -87,11 +99,12 @@ object Frm_Principal: TFrm_Principal
       Font.Name = 'Arial'
       Font.Style = []
       ParentFont = False
+      ScrollBars = ssBoth
       TabOrder = 0
     end
     object Edit1: TEdit
       Left = 393
-      Top = 198
+      Top = 200
       Width = 280
       Height = 24
       Font.Charset = ANSI_CHARSET
@@ -104,7 +117,7 @@ object Frm_Principal: TFrm_Principal
     end
     object Button1: TButton
       Left = 679
-      Top = 198
+      Top = 200
       Width = 75
       Height = 25
       Caption = 'Enviar'
@@ -119,7 +132,7 @@ object Frm_Principal: TFrm_Principal
     end
     object Button2: TButton
       Left = 18
-      Top = 138
+      Top = 202
       Width = 75
       Height = 25
       Caption = 'Conectar'
@@ -147,7 +160,7 @@ object Frm_Principal: TFrm_Principal
     end
     object Edit3: TEdit
       Left = 18
-      Top = 97
+      Top = 161
       Width = 167
       Height = 24
       Font.Charset = ANSI_CHARSET
@@ -158,6 +171,86 @@ object Frm_Principal: TFrm_Principal
       ParentFont = False
       TabOrder = 5
     end
+    object Edit4: TEdit
+      Left = 18
+      Top = 97
+      Width = 167
+      Height = 24
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 6
+    end
+    object DBCtrlGridMesas: TDBCtrlGrid
+      Left = 806
+      Top = 22
+      Width = 543
+      Height = 500
+      Margins.Left = 0
+      Margins.Top = 0
+      Margins.Right = 0
+      Margins.Bottom = 0
+      AllowDelete = False
+      AllowInsert = False
+      Color = clWhite
+      DataSource = sMensagens
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      PanelBorder = gbNone
+      PanelHeight = 62
+      PanelWidth = 526
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 7
+      RowCount = 8
+      SelectedColor = 16757092
+      object Panel2: TPanel
+        Left = 0
+        Top = 0
+        Width = 526
+        Height = 62
+        Align = alClient
+        Color = 8453888
+        ParentBackground = False
+        TabOrder = 0
+        ExplicitWidth = 529
+        ExplicitHeight = 61
+        object DBText1: TDBText
+          Left = 16
+          Top = 9
+          Width = 497
+          Height = 17
+          DataField = 'AUTOR'
+          DataSource = sMensagens
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -13
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object DBText2: TDBText
+          Left = 16
+          Top = 30
+          Width = 497
+          Height = 17
+          DataField = 'MENSAGEM'
+          DataSource = sMensagens
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ParentFont = False
+        end
+      end
+    end
   end
   object ClientSocket1: TClientSocket
     Active = False
@@ -166,7 +259,30 @@ object Frm_Principal: TFrm_Principal
     OnDisconnect = ClientSocket1Disconnect
     OnRead = ClientSocket1Read
     OnError = ClientSocket1Error
-    Left = 488
-    Top = 40
+    Left = 688
+    Top = 32
+  end
+  object NotificationCenter1: TNotificationCenter
+    Left = 720
+    Top = 80
+  end
+  object Mensagens: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    Left = 112
+    Top = 320
+    object MensagensMENSAGEM: TStringField
+      FieldName = 'MENSAGEM'
+      Size = 500
+    end
+    object MensagensAUTOR: TStringField
+      FieldName = 'AUTOR'
+      Size = 100
+    end
+  end
+  object sMensagens: TDataSource
+    DataSet = Mensagens
+    Left = 168
+    Top = 464
   end
 end

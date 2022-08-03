@@ -8,7 +8,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Win.ScktComp,
-  Vcl.ExtCtrls, UFuncoes, System.Notification;
+  Vcl.ExtCtrls, UFuncoes, System.Notification, System.StrUtils;
 
 type
   TFrm_Principal = class(TForm)
@@ -45,6 +45,9 @@ var
 
 implementation
 
+uses
+  System.Types;
+
 {$R *.dfm}
 
 procedure TFrm_Principal.Button1Click(Sender: TObject);
@@ -64,7 +67,7 @@ end;
 
 procedure TFrm_Principal.Button2Click(Sender: TObject);
 begin
-  if not (ServerSocket1.Active) then
+  if not(ServerSocket1.Active) then
   begin
     ServerSocket1.Port := StrToInt(Trim(Edit2.Text));
     ServerSocket1.Active := True;
@@ -127,28 +130,37 @@ end;
 
 procedure TFrm_Principal.ServerSocket1ClientRead(Sender: TObject;
   Socket: TCustomWinSocket);
+var
+  MensagemArray: TStringDynArray;
+  i: Integer;
 Begin
   // Memo1.Text := Memo1.Text + 'Client' + IntToStr(Socket.SocketHandle) + ' :' +
   // Socket.ReceiveText + #13#10;
-  Memo1.Text := Memo1.Text + Socket.ReceiveText + #13#10;
-  ShowNotification(Socket.ReceiveText);
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
+
+  Memo1.Text    := Memo1.Text + Socket.ReceiveText + #13#10;
+  MensagemArray := SplitString(Memo1.Lines[0],';;;');
+  for i := 0 to ServerSocket1.Socket.ActiveConnections - 1 do
+    ServerSocket1.Socket.Connections[i].SendText(Memo1.Lines[0]);
+  Memo1.Lines.Clear;
+  ShowMessage(MensagemArray[0] + ' diz: ' + MensagemArray[1]);
 end;
 
 procedure TFrm_Principal.ShowMessage(Msg: String);
 var
   MyNotification: TNotification;
 begin
-  MyNotification := NotificationCenter1.CreateNotification;
-  try
-    MyNotification.Name := 'ChatNotification';
-    MyNotification.Title := 'Full Chat';
-    MyNotification.AlertBody := Msg;
+  if NotificationCenter1.Supported then
+  begin
+    MyNotification := NotificationCenter1.CreateNotification;
+    try
+      MyNotification.Name := 'ChatNotification';
+      MyNotification.Title := 'Full Chat';
+      MyNotification.AlertBody := Msg;
 
-    NotificationCenter1.PresentNotification(MyNotification);
-  finally
-    MyNotification.Free;
+      NotificationCenter1.PresentNotification(MyNotification);
+    finally
+      MyNotification.Free;
+    end;
   end;
 end;
 

@@ -2,8 +2,8 @@ object Frm_Principal: TFrm_Principal
   Left = 0
   Top = 0
   Caption = 'Full Chat - Servidor'
-  ClientHeight = 299
-  ClientWidth = 635
+  ClientHeight = 152
+  ClientWidth = 496
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,14 +17,12 @@ object Frm_Principal: TFrm_Principal
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 635
-    Height = 299
+    Width = 496
+    Height = 152
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 496
-    ExplicitTop = 168
-    ExplicitWidth = 185
-    ExplicitHeight = 41
+    ExplicitWidth = 635
+    ExplicitHeight = 299
     object Label1: TLabel
       Left = 41
       Top = 25
@@ -38,22 +36,9 @@ object Frm_Principal: TFrm_Principal
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 41
-      Top = 90
-      Width = 57
-      Height = 16
-      Caption = 'Conversa:'
-      Font.Charset = ANSI_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Arial'
-      Font.Style = []
-      ParentFont = False
-    end
     object Label3: TLabel
-      Left = 409
-      Top = 235
+      Left = 41
+      Top = 77
       Width = 35
       Height = 16
       Caption = 'Porta:'
@@ -65,8 +50,8 @@ object Frm_Principal: TFrm_Principal
       ParentFont = False
     end
     object Memo1: TMemo
-      Left = 41
-      Top = 112
+      Left = 9
+      Top = 168
       Width = 336
       Height = 169
       Font.Charset = ANSI_CHARSET
@@ -107,8 +92,8 @@ object Frm_Principal: TFrm_Principal
       OnClick = Button1Click
     end
     object Button2: TButton
-      Left = 535
-      Top = 257
+      Left = 183
+      Top = 97
       Width = 82
       Height = 25
       Caption = 'Iniciar'
@@ -122,8 +107,8 @@ object Frm_Principal: TFrm_Principal
       OnClick = Button2Click
     end
     object Edit2: TEdit
-      Left = 409
-      Top = 257
+      Left = 41
+      Top = 97
       Width = 120
       Height = 24
       Font.Charset = ANSI_CHARSET
@@ -142,11 +127,11 @@ object Frm_Principal: TFrm_Principal
     OnClientConnect = ServerSocket1ClientConnect
     OnClientDisconnect = ServerSocket1ClientDisconnect
     OnClientRead = ServerSocket1ClientRead
-    Left = 560
-    Top = 40
+    Left = 272
+    Top = 96
   end
   object NotificationCenter1: TNotificationCenter
-    Left = 568
+    Left = 336
     Top = 96
   end
 end

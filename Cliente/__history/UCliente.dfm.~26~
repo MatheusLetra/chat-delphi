@@ -219,8 +219,7 @@ object Frm_Principal: TFrm_Principal
         Width = 531
         Height = 49
         Align = alClient
-        BevelOuter = bvNone
-        Color = 16777088
+        Color = 8453888
         ParentBackground = False
         TabOrder = 0
         ExplicitWidth = 529

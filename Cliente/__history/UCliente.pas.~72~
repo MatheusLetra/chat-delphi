@@ -61,14 +61,11 @@ var
 
 implementation
 
-uses
-  System.Types, System.StrUtils;
-
 {$R *.dfm}
 
 procedure TFrm_Principal.Button1Click(Sender: TObject);
 begin
-  Str := Edit2.Text + ';' + Edit1.Text;
+  Str := Edit2.Text + ' diz: ' + Edit1.Text;
   InserirMensagem(Edit2.Text, Edit1.Text, True);
   Memo1.Text := Memo1.Text + Str + #13#10;
   Edit1.Text := ''; // Clears the edit box
@@ -149,17 +146,14 @@ end;
 procedure TFrm_Principal.ClientSocket1Read(Sender: TObject;
   Socket: TCustomWinSocket);
 var
-  MensagemArray: TStringDynArray;
+  Mensagem: WideString;
 begin
-  Memo1.Text := Socket.ReceiveText;
-  MensagemArray := SplitString(Memo1.Lines[0],';');
+  Memo1.Text := Socket.ReceiveText + #13#10;
+  Mensagem := Memo1.Lines[0];
   Memo1.Lines.Clear;
 
-  if MensagemArray[0] <> Edit2.Text then
-  begin
-    InserirMensagem(MensagemArray[0], MensagemArray[1], False);
-    ShowMessage(MensagemArray[0] + ' diz: ' + MensagemArray[1]);
-  end;
+  InserirMensagem('Servidor', Mensagem, False);
+  ShowMessage('Servidor diz: ' + Mensagem);
 end;
 
 procedure TFrm_Principal.DBCtrlGridMesasPaintPanel(DBCtrlGrid: TDBCtrlGrid;

@@ -12,17 +12,17 @@
     <Transaction>2020/10/20 09:38:53.000.266,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2020/11/23 10:25:02.000.356,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2020/11/23 10:25:07.000.816,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2020/11/23 13:41:24.000.554,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
     <Transaction>2020/11/23 13:41:24.000.693,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
     <Transaction>2020/11/23 13:41:24.000.339,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/11/23 13:41:24.000.554,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
     <Transaction>2020/11/24 16:28:14.000.275,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:44:44.618,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:45:04.373,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.pas=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/08/03 10:45:04.373,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.dfm=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2022/08/03 10:45:11.504,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\PClienteChat.dproj=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
-    <Transaction>2022/08/03 10:45:34.366,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.pas=</Transaction>
-    <Transaction>2022/08/03 10:45:39.781,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\UCliente.pas</Transaction>
-    <Transaction>2022/08/03 11:57:19.501,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Comum\UFuncoes.pas</Transaction>
+    <Transaction>2022/08/03 10:44:44.000.618,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:45:04.000.373,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.dfm</Transaction>
+    <Transaction>2022/08/03 10:45:04.000.373,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.pas</Transaction>
+    <Transaction>2022/08/03 10:45:11.000.504,C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\PClienteChat.dproj</Transaction>
+    <Transaction>2022/08/03 10:45:34.000.366,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\Utest.pas=</Transaction>
+    <Transaction>2022/08/03 10:45:39.000.781,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Cliente\UCliente.pas</Transaction>
+    <Transaction>2022/08/03 11:57:19.000.501,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Comum\UFuncoes.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
 		<NoProfile iOSSimulator="iPhone5"/>

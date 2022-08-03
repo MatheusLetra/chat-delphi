@@ -8,7 +8,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Win.ScktComp,
-  Vcl.ExtCtrls, UFuncoes, System.Notification;
+  Vcl.ExtCtrls, UFuncoes, System.Notification, System.StrUtils;
 
 type
   TFrm_Principal = class(TForm)
@@ -19,7 +19,6 @@ type
     Edit1: TEdit;
     Panel1: TPanel;
     Label1: TLabel;
-    Label2: TLabel;
     Label3: TLabel;
     Edit2: TEdit;
     NotificationCenter1: TNotificationCenter;
@@ -45,6 +44,9 @@ var
 
 implementation
 
+uses
+  System.Types;
+
 {$R *.dfm}
 
 procedure TFrm_Principal.Button1Click(Sender: TObject);
@@ -52,14 +54,12 @@ var
   i: integer;
 begin
   Str := Edit1.Text;
-  Memo1.Text := Memo1.Text + 'Servidor: ' + Str + #13#10;
+  Memo1.Lines.Clear;
+  Memo1.Text := Memo1.Text + 'Servidor;' + Str;
   Edit1.Text := '';
 
   for i := 0 to ServerSocket1.Socket.ActiveConnections - 1 do
-    ServerSocket1.Socket.Connections[i].SendText(Str);
-
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
+    ServerSocket1.Socket.Connections[i].SendText(Memo1.Lines[0]);
 end;
 
 procedure TFrm_Principal.Button2Click(Sender: TObject);
@@ -68,7 +68,6 @@ begin
   begin
     ServerSocket1.Port := StrToInt(Trim(Edit2.Text));
     ServerSocket1.Active := True;
-    Memo1.Text := Memo1.Text + 'Servidor Iniciado' + #13#10;
     Button2.Caption := 'Parar';
 
     Edit1.Enabled := True;
@@ -79,7 +78,6 @@ begin
   else
   begin
     ServerSocket1.Active := False;
-    Memo1.Text := Memo1.Text + 'Servidor Parado' + #13#10;
     Button2.Caption := 'Iniciar';
 
     Edit1.Enabled := False;
@@ -87,9 +85,6 @@ begin
     Memo1.Enabled := False;
     Edit2.Enabled := True;
   end;
-
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
 end;
 
 procedure TFrm_Principal.FormCreate(Sender: TObject);
@@ -103,13 +98,10 @@ end;
 procedure TFrm_Principal.ServerSocket1ClientConnect(Sender: TObject;
   Socket: TCustomWinSocket);
 begin
-  Socket.SendText('Conectado');
+  Socket.SendText('Servidor;Conectado');
 
   Button1.Enabled := True;
   Edit1.Enabled := True;
-
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
 end;
 
 procedure TFrm_Principal.ServerSocket1ClientDisconnect(Sender: TObject;
@@ -120,20 +112,24 @@ Begin
     Button1.Enabled := False;
     Edit1.Enabled := False;
   end;
-
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
 end;
 
 procedure TFrm_Principal.ServerSocket1ClientRead(Sender: TObject;
   Socket: TCustomWinSocket);
+var
+  MensagemArray: TStringDynArray;
+  i: Integer;
 Begin
   // Memo1.Text := Memo1.Text + 'Client' + IntToStr(Socket.SocketHandle) + ' :' +
   // Socket.ReceiveText + #13#10;
-  Memo1.Text := Memo1.Text + Socket.ReceiveText + #13#10;
-  ShowMessage(Socket.ReceiveText);
-  Memo1.SelStart := Length(Memo1.Text);
-  Memo1.Perform(em_scrollcaret, 0, 0);
+  Memo1.Lines.Clear;
+  Memo1.Text    := Memo1.Text + Socket.ReceiveText + #13#10;
+  MensagemArray := SplitString(Memo1.Lines[0],';');
+
+  for i := 0 to ServerSocket1.Socket.ActiveConnections - 1 do
+    ServerSocket1.Socket.Connections[i].SendText(Memo1.Lines[0]);
+
+  ShowMessage(MensagemArray[0] + ' diz: ' + MensagemArray[1]);
 end;
 
 procedure TFrm_Principal.ShowMessage(Msg: String);
