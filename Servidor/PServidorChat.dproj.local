@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2020/01/16 14:47:47.000.427,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/08 16:51:24.000.849,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/07/08 16:51:25.000.030,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2020/07/08 16:51:25.000.491,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2020/08/17 14:11:27.000.283,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\FormUnit1.pas</Transaction>
+    <Transaction>2020/08/17 14:11:36.000.105,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\WebModuleUnit1.pas</Transaction>
+    <Transaction>2020/09/01 14:53:13.000.414,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/09/01 15:34:12.000.318,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/10/20 09:38:53.000.266,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/11/23 10:25:02.000.356,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/11/23 10:25:07.000.816,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/11/23 13:41:24.000.554,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerMethodsUnit1.pas</Transaction>
+    <Transaction>2020/11/23 13:41:24.000.693,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\ServerContainerUnit1.pas</Transaction>
+    <Transaction>2020/11/23 13:41:24.000.339,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2020/11/24 16:28:14.000.275,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:42:17.688,=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:42:51.158,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 10:42:51.158,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.dfm=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/08/03 10:43:03.832,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\PServidorChat.dproj=C:\Users\Arth\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2022/08/03 10:43:35.099,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UPrincipal.pas</Transaction>
+    <Transaction>2022/08/03 10:44:03.347,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\UTest.pas=</Transaction>
+    <Transaction>2022/08/03 11:52:15.187,=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas</Transaction>
+    <Transaction>2022/08/03 11:52:39.075,C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Comum\UFuncoes.pas=C:\Users\Arth\Desktop\Matheus\Projetos\Projetos Pessoais\Delphi\FullChat\Servidor\Unit1.pas</Transaction>
+  </Transactions>
+	<ActiveMobileDevice>
+		<NoProfile iOSSimulator="iPhone5"/>
+	</ActiveMobileDevice>
+</BorlandProject>

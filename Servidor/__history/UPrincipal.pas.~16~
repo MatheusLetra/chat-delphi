@@ -1,0 +1,141 @@
+// https://docwiki.embarcadero.com/RADStudio/Sydney/en/Installing_Socket_Components
+// https://docwiki.embarcadero.com/CodeExamples/Sydney/en/Chat_Room_Socket_(Delphi)
+unit UPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Win.ScktComp,
+  Vcl.ExtCtrls;
+
+type
+  TFrm_Principal = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Memo1: TMemo;
+    ServerSocket1: TServerSocket;
+    Edit1: TEdit;
+    Panel1: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit2: TEdit;
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ServerSocket1ClientConnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientDisconnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    Str: String;
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_Principal: TFrm_Principal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_Principal.Button1Click(Sender: TObject);
+var
+  i: integer;
+begin
+  Str := Edit1.Text; // Take the string (message) sent by the server
+  Memo1.Text := Memo1.Text + 'Servidor: ' + Str + #13#10;
+  // Adds the message to the memo box
+  Edit1.Text := ''; // Clears the edit box
+  // Sends the messages to all clients connected to the server
+  for i := 0 to ServerSocket1.Socket.ActiveConnections - 1 do
+    ServerSocket1.Socket.Connections[i].SendText(Str); // Sent
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.Button2Click(Sender: TObject);
+begin
+  if (ServerSocket1.Active)
+  then
+  begin
+    ServerSocket1.Port := StrToInt(Trim(Edit2.Text));
+    ServerSocket1.Active := True;
+    Memo1.Text := Memo1.Text + 'Servidor Iniciado' + #13#10;
+    Button2.Caption := 'Parar';
+
+    Edit1.Enabled   := True;
+    Button1.Enabled := True;
+    Memo1.Enabled   := True;
+    Edit2.Enabled   := False;
+  end
+  else
+  begin
+    ServerSocket1.Active := False;
+    Memo1.Text := Memo1.Text + 'Servidor Parado' + #13#10;
+    Button2.Caption := 'Iniciar';
+
+    Edit1.Enabled   := False;
+    Button1.Enabled := False;
+    Memo1.Enabled   := False;
+    Edit2.Enabled   := True;
+  end;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.FormCreate(Sender: TObject);
+begin
+  Edit1.Enabled   := False;
+  Button1.Enabled := False;
+  Memo1.Enabled   := False;
+  Edit2.Enabled   := True;
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientConnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  Socket.SendText('Conectado'); // Sends a message to the client
+  // If at least a client is connected to the server, then the server can communicate
+  // Enables the Send button and the edit box
+  Button1.Enabled := True;
+  Edit1.Enabled := True;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientDisconnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+Begin
+  // The server cannot send messages if there is no client connected to it
+  if ServerSocket1.Socket.ActiveConnections - 1 = 0 then
+  begin
+    Button1.Enabled := False;
+    Edit1.Enabled := False;
+  end;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+Begin
+  // Memo1.Text := Memo1.Text + 'Client' + IntToStr(Socket.SocketHandle) + ' :' +
+  // Socket.ReceiveText + #13#10;
+  Memo1.Text := Memo1.Text + Socket.ReceiveText + #13#10;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+end.

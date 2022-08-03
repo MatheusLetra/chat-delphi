@@ -1,0 +1,61 @@
+object Frm_Principal: TFrm_Principal
+  Left = 0
+  Top = 0
+  Caption = 'Full Chat - Servidor'
+  ClientHeight = 299
+  ClientWidth = 635
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Button1: TButton
+    Left = 56
+    Top = 24
+    Width = 75
+    Height = 25
+    Caption = 'Enviar'
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 56
+    Top = 72
+    Width = 75
+    Height = 25
+    Caption = 'Iniciar/Parar'
+    TabOrder = 1
+    OnClick = Button2Click
+  end
+  object Memo1: TMemo
+    Left = 137
+    Top = 24
+    Width = 336
+    Height = 73
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 2
+  end
+  object Edit1: TEdit
+    Left = 137
+    Top = 103
+    Width = 336
+    Height = 21
+    TabOrder = 3
+    Text = 'Edit1'
+  end
+  object ServerSocket1: TServerSocket
+    Active = False
+    Port = 0
+    ServerType = stNonBlocking
+    OnClientConnect = ServerSocket1ClientConnect
+    OnClientDisconnect = ServerSocket1ClientDisconnect
+    OnClientRead = ServerSocket1ClientRead
+    Left = 512
+    Top = 32
+  end
+end

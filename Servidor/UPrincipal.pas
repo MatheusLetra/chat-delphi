@@ -1,0 +1,158 @@
+// https://docwiki.embarcadero.com/RADStudio/Sydney/en/Installing_Socket_Components
+// https://docwiki.embarcadero.com/CodeExamples/Sydney/en/Chat_Room_Socket_(Delphi)
+unit UPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, System.Win.ScktComp,
+  Vcl.ExtCtrls, UFuncoes, System.Notification;
+
+type
+  TFrm_Principal = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    Memo1: TMemo;
+    ServerSocket1: TServerSocket;
+    Edit1: TEdit;
+    Panel1: TPanel;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Edit2: TEdit;
+    NotificationCenter1: TNotificationCenter;
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure ServerSocket1ClientConnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientDisconnect(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure ServerSocket1ClientRead(Sender: TObject;
+      Socket: TCustomWinSocket);
+    procedure FormCreate(Sender: TObject);
+  private
+    { Private declarations }
+    Str: String;
+    procedure ShowMessage(Msg: String);
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_Principal: TFrm_Principal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrm_Principal.Button1Click(Sender: TObject);
+var
+  i: integer;
+begin
+  Str := Edit1.Text;
+  Memo1.Text := Memo1.Text + 'Servidor: ' + Str + #13#10;
+  Edit1.Text := '';
+
+  for i := 0 to ServerSocket1.Socket.ActiveConnections - 1 do
+    ServerSocket1.Socket.Connections[i].SendText(Str);
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.Button2Click(Sender: TObject);
+begin
+  if not(ServerSocket1.Active) then
+  begin
+    ServerSocket1.Port := StrToInt(Trim(Edit2.Text));
+    ServerSocket1.Active := True;
+    Memo1.Text := Memo1.Text + 'Servidor Iniciado' + #13#10;
+    Button2.Caption := 'Parar';
+
+    Edit1.Enabled := True;
+    Button1.Enabled := True;
+    Memo1.Enabled := True;
+    Edit2.Enabled := False;
+  end
+  else
+  begin
+    ServerSocket1.Active := False;
+    Memo1.Text := Memo1.Text + 'Servidor Parado' + #13#10;
+    Button2.Caption := 'Iniciar';
+
+    Edit1.Enabled := False;
+    Button1.Enabled := False;
+    Memo1.Enabled := False;
+    Edit2.Enabled := True;
+  end;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.FormCreate(Sender: TObject);
+begin
+  Edit1.Enabled := False;
+  Button1.Enabled := False;
+  Memo1.Enabled := False;
+  Edit2.Enabled := True;
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientConnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+begin
+  Socket.SendText('Conectado');
+
+  Button1.Enabled := True;
+  Edit1.Enabled := True;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientDisconnect(Sender: TObject;
+  Socket: TCustomWinSocket);
+Begin
+  if ServerSocket1.Socket.ActiveConnections - 1 = 0 then
+  begin
+    Button1.Enabled := False;
+    Edit1.Enabled := False;
+  end;
+
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.ServerSocket1ClientRead(Sender: TObject;
+  Socket: TCustomWinSocket);
+Begin
+  // Memo1.Text := Memo1.Text + 'Client' + IntToStr(Socket.SocketHandle) + ' :' +
+  // Socket.ReceiveText + #13#10;
+  Memo1.Text := Memo1.Text + Socket.ReceiveText + #13#10;
+  ShowMessage(Socket.ReceiveText);
+  Memo1.SelStart := Length(Memo1.Text);
+  Memo1.Perform(em_scrollcaret, 0, 0);
+end;
+
+procedure TFrm_Principal.ShowMessage(Msg: String);
+var
+  MyNotification: TNotification;
+begin
+  if NotificationCenter1.Supported then
+  begin
+    MyNotification := NotificationCenter1.CreateNotification;
+    try
+      MyNotification.Name := 'ChatNotification';
+      MyNotification.Title := 'Full Chat';
+      MyNotification.AlertBody := Msg;
+
+      NotificationCenter1.PresentNotification(MyNotification);
+    finally
+      MyNotification.Free;
+    end;
+  end;
+end;
+
+end.
